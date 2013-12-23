@@ -1,4 +1,4 @@
 TimeGlue
 ========
 
-A small application to "glue" an event to a timeline.
+A small application to "glue" an event to a timeline. Just started. 
