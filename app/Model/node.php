@@ -8,6 +8,7 @@ public $validate = array(
                 'title' => array(
                         'not_empty'=> array(
                                     'rule' => 'notEmpty',
+                                    'required' =>true,
                                     'message' => 'Title cannot be empty'
                                         ),
                         'length_check' => array(
@@ -18,6 +19,7 @@ public $validate = array(
                 'reference_date' => array(
                         'is_date' => array(
                                         'rule' => 'date',
+                                        'required' => 'true',
                                         'message' => 'Invalid date'
                                         )
                             )
