@@ -1,5 +1,5 @@
 <?php
-class VideosController extends AppController{
+class PicturesController extends AppController{
 
 public function index()
 {}
@@ -8,9 +8,9 @@ public function add()
 {
     if($this->request->is('post'))
     {
-            $this->Video->create();
+            $this->Picture->create();
             if ($this->Picure->save($this->request->data)) {
-                $this->Session->setFlash(__('Video has been added to node.'));
+                $this->Session->setFlash(__('Picture has been added to node.'));
             }
             else{
             $this->Session->setFlash(__('Unable to picture to node.'));
@@ -19,7 +19,7 @@ public function add()
     }
     else
     {
-    $nodes = $this->Video->Node->find('list', array('conditions' => array('thread_id' => $this->Session->read('current_thread'))));
+    $nodes = $this->Picture->Node->find('list', array('conditions' => array('thread_id' => $this->Session->read('current_thread'))));
     $this->set('nodes', $nodes);
     }
 }
