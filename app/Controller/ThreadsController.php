@@ -1,5 +1,6 @@
 <?php
 class ThreadsController extends AppController{
+
 public $helpers = array('Html', 'Form', 'Session');
 
 public function index() {
@@ -23,12 +24,18 @@ public function view($id = null)
 }
 public function add() {
         if ($this->request->is('post')) {
+            $this->Session->write('user_id',1);
+            $this->request->data['Thread']['user_id']=$this->Session->read('user_id');
             $this->Thread->create();
+            //print "LOOK HERE".$this->Session->read('user_id');
             if ($this->Thread->save($this->request->data)) {
                 $this->Session->setFlash(__('Your Thread has been created.'));
-                return $this->redirect(array('action' => 'index'));
+                //print_r($this->request->data['Thread']);
+                //return $this->redirect(array('action' => 'index'));
             }
+            else{
             $this->Session->setFlash(__('Unable to add your post.'));
+            }
         }
     }
 public function delete($id) {

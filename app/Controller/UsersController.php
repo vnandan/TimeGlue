@@ -1,4 +1,10 @@
 <?php
 class UsersController extends AppController{
-    public $scaffold;
+//    public $scaffold;
+public function add()
+{
+    
 }
+
+}
+?>
