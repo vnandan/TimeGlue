@@ -14,7 +14,7 @@ public function view($id = null)
         }
     else
     {
-  //  $this->Thread->recursive=2;
+    $this->Thread->recursive=2;
     $thread = $this->Thread->findById($id);
         if (!$thread) {
             throw new NotFoundException(__('Invalid post'));

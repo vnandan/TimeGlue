@@ -3,15 +3,14 @@ class Blogscontroller extends AppController{
 
 public function index()
 {
-
 }
 
 public function add()
 {
+    public $helpers = array('Js' => array('Jquery'));
     $this->Session->write('current_thread',1);
     if($this->request->is('post'))
     {
-       // $this->request->data['Node']['thread_id']=$this->Session->read('current_thread');
             $this->Blog->create();
             if ($this->Blog->save($this->request->data)) {
                 $this->Session->setFlash(__('Blog link has been added to node.'));
@@ -19,8 +18,7 @@ public function add()
             else{
             $this->Session->setFlash(__('Unable to add link to node.'));
             }
-           // return $this->redirect(array('action' => 'index'));
-            print_r($this->request->data);
+            return $this->redirect(array('action' => 'index'));
     }
     else
     {
