@@ -13,6 +13,8 @@ public function add()
     $this->Session->write('current_thread',1);
     if($this->request->is('ajax'))
     {
+        if($this->request->data)
+        {
             $this->Blog->create();
             if ($this->Blog->save($this->request->data)) {
                 //$this->Session->setFlash(__('Blog link has been added to node.'));
@@ -23,11 +25,18 @@ public function add()
             $this->render('add_failure','ajax');
 
             }
+        }
+        else
+        {
+        $nodes= $this->Blog->Node->find('list', array('conditions' => array('thread_id' => $this->Session->read('current_thread'))));
+        $this->set('nodes', $nodes);        
+        }
     }
     else
     {
-    $nodes= $this->Blog->Node->find('list', array('conditions' => array('thread_id' => $this->Session->read('current_thread'))));
-    $this->set('nodes', $nodes);
+        $this->redirect(array('action' => 'index'));
+    //$nodes= $this->Blog->Node->find('list', array('conditions' => array('thread_id' => $this->Session->read('current_thread'))));
+    //$this->set('nodes', $nodes);
     }
 }
 
