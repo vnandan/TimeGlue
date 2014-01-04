@@ -4,5 +4,5 @@ echo $this->Form->create('Thread');
 echo $this->Form->input('title');
 echo $this->Form->input('description');
 echo $this->Form->input('private');
-echo $this->Form->end('Create Thread');
+echo $this->Form->end('Save Post');
 ?>

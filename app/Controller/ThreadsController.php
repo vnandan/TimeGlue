@@ -38,31 +38,6 @@ public function add() {
             }
         }
     }
-    
-public function edit($id = null) {
-    if (!$id) {
-        throw new NotFoundException(__('Invalid Thread'));
-    }
-
-    $thread = $this->Thread->findById($id);
-    if (!$thread) {
-        throw new NotFoundException(__('Invalid thread'));
-    }
-
-    if ($this->request->is(array('post', 'put'))) {
-        $this->Thread->id = $id;
-        if ($this->Thread->save($this->request->data)) {
-            $this->Session->setFlash(__('Your thread has been updated.'));
-            return $this->redirect(array('action' => 'index'));
-        }
-        $this->Session->setFlash(__('Unable to update your post.'));
-    }
-
-    if (!$this->request->data) {
-        $this->request->data = $thread;
-    }
-}
-
 public function delete($id) {
     if ($this->request->is('get')) {
         throw new MethodNotAllowedException();
