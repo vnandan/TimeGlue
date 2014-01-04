@@ -1,5 +1,7 @@
 <?php
 class Blogscontroller extends AppController{
+public $helpers = array('Js' => array('Jquery'));
+public $components = array('RequestHandler');
 
 public function index()
 {
@@ -7,18 +9,20 @@ public function index()
 
 public function add()
 {
-    public $helpers = array('Js' => array('Jquery'));
+
     $this->Session->write('current_thread',1);
-    if($this->request->is('post'))
+    if($this->request->is('ajax'))
     {
             $this->Blog->create();
             if ($this->Blog->save($this->request->data)) {
-                $this->Session->setFlash(__('Blog link has been added to node.'));
+                //$this->Session->setFlash(__('Blog link has been added to node.'));
+                $this->render('add_success','ajax');
             }
             else{
-            $this->Session->setFlash(__('Unable to add link to node.'));
+            //$this->Session->setFlash(__('Unable to add link to node.'));
+            $this->render('add_failure','ajax');
+
             }
-            return $this->redirect(array('action' => 'index'));
     }
     else
     {
